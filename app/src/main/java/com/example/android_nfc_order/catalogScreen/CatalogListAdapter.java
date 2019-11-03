@@ -51,10 +51,10 @@ public class CatalogListAdapter extends RecyclerView.Adapter<CatalogListAdapter.
         holder.itemView.setTag(catalogItems.get(position));
         holder.itemView.setOnClickListener(clickListener);
 
-        String name = catalogItems.get(position).name;
+        String name = catalogItems.get(position).getName();
         holder.itemName.setText(name);
 
-        String imgUrl = catalogItems.get(position).imgUrl;
+//        String imgUrl = catalogItems.get(position).getImgUrl();
         // TODO set the image inside the item
     }
 

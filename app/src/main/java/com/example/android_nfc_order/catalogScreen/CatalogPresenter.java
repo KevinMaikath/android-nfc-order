@@ -59,6 +59,8 @@ public class CatalogPresenter implements CatalogContract.Presenter {
                 @Override
                 public void setCatalogItems(List<CatalogItem> catalogItemList) {
                     viewModel.catalogItemList = catalogItemList;
+                    view.get().displayData(viewModel);
+                    Log.e(TAG, "DATA SET FROM FIRESTORE");
                 }
             });
         }
@@ -72,4 +74,5 @@ public class CatalogPresenter implements CatalogContract.Presenter {
     public void onCatalogItemClicked(CatalogItem item) {
         // TODO onCatalogItemClicked
     }
+
 }

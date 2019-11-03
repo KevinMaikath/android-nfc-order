@@ -53,10 +53,15 @@ public class CatalogActivity
     }
 
     @Override
-    public void displayData(CatalogViewModel viewModel) {
+    public void displayData(final CatalogViewModel viewModel) {
         //Log.e(TAG, "displayData()");
 
         // deal with the data
-//        ((TextView) findViewById(R.id.data)).setText(viewModel.data);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                listAdapter.setItems(viewModel.catalogItemList);
+            }
+        });
     }
 }

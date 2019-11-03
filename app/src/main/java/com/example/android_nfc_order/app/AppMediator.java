@@ -8,6 +8,10 @@ public class AppMediator extends Application {
 
     private CatalogState catalogState;
 
+    public AppMediator() {
+        this.catalogState = new CatalogState();
+    }
+
     public CatalogState getCatalogState() {
         return catalogState;
     }

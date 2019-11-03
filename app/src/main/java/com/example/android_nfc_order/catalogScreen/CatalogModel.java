@@ -10,8 +10,8 @@ public class CatalogModel implements CatalogContract.Model {
 
     private Repository repository;
 
-    public CatalogModel() {
-
+    public CatalogModel(Repository repository) {
+        this.repository =  repository;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class CatalogModel implements CatalogContract.Model {
     }
 
     @Override
-    public void getCatalogItems(RepositoryContract.LoadCatalogItemsCallback callback) {
+    public void getCatalogItems(final RepositoryContract.LoadCatalogItemsCallback callback) {
         repository.loadCatalogItems(callback);
     }
 }

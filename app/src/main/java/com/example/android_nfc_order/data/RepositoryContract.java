@@ -5,8 +5,8 @@ import java.util.List;
 public interface RepositoryContract {
 
     interface LoadCatalogItemsCallback {
-        void setCatalogItems(List<CatalogItem> catalogItemList);
+        void setCatalogItems(final List<CatalogItem> catalogItemList);
     }
 
-    void loadCatalogItems(LoadCatalogItemsCallback callback);
+    void loadCatalogItems(final LoadCatalogItemsCallback callback);
 }
