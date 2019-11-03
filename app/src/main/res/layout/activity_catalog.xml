@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
         tools:context=".catalogScreen.CatalogActivity">
 
-    <TextView
-            android:id="@+id/data"
+    <include
+            android:id="@+id/catalog_recycler"
+            layout="@layout/catalog_recycler_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            tools:text="Hello" />
-
-</FrameLayout>
+            android:layout_height="wrap_content" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

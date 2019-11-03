@@ -1,12 +1,13 @@
 package com.example.android_nfc_order.catalogScreen;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_nfc_order.R;
+import com.example.android_nfc_order.data.CatalogItem;
 
 public class CatalogActivity
         extends AppCompatActivity implements CatalogContract.View {
@@ -15,10 +16,24 @@ public class CatalogActivity
 
     private CatalogContract.Presenter presenter;
 
+    private RecyclerView recyclerView;
+    private CatalogListAdapter listAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
+
+        listAdapter = new CatalogListAdapter(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CatalogItem item = (CatalogItem) view.getTag();
+                presenter.onCatalogItemClicked(item);
+            }
+        });
+
+        recyclerView = findViewById(R.id.catalog_recycler);
+        recyclerView.setAdapter(listAdapter);
 
         // do the setup
         CatalogScreen.configure(this);
@@ -42,6 +57,6 @@ public class CatalogActivity
         //Log.e(TAG, "displayData()");
 
         // deal with the data
-        ((TextView) findViewById(R.id.data)).setText(viewModel.data);
+//        ((TextView) findViewById(R.id.data)).setText(viewModel.data);
     }
 }
