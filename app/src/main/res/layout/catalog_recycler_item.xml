@@ -14,7 +14,8 @@
                 android:id="@+id/item_icon"
                 android:layout_width="80dp"
                 android:layout_height="60dp"
-                android:layout_margin="10dp"></ImageView>
+                android:layout_margin="10dp"
+                android:scaleType="fitCenter"></ImageView>
 
         <TextView
                 android:id="@+id/item_name"

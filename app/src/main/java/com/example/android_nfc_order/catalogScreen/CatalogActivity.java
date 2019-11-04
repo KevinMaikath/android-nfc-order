@@ -6,62 +6,64 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.android_nfc_order.R;
 import com.example.android_nfc_order.data.CatalogItem;
 
+
 public class CatalogActivity
-        extends AppCompatActivity implements CatalogContract.View {
+    extends AppCompatActivity implements CatalogContract.View {
 
-    public static String TAG = CatalogActivity.class.getSimpleName();
+  public static String TAG = CatalogActivity.class.getSimpleName();
 
-    private CatalogContract.Presenter presenter;
+  private CatalogContract.Presenter presenter;
 
-    private RecyclerView recyclerView;
-    private CatalogListAdapter listAdapter;
+  private RecyclerView recyclerView;
+  private CatalogListAdapter listAdapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_catalog);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_catalog);
 
-        listAdapter = new CatalogListAdapter(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CatalogItem item = (CatalogItem) view.getTag();
-                presenter.onCatalogItemClicked(item);
-            }
-        });
+    listAdapter = new CatalogListAdapter(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        CatalogItem item = (CatalogItem) view.getTag();
+        presenter.onCatalogItemClicked(item);
+      }
+    }, Glide.with(this));
 
-        recyclerView = findViewById(R.id.catalog_recycler);
-        recyclerView.setAdapter(listAdapter);
+    recyclerView = findViewById(R.id.catalog_recycler);
+    recyclerView.setAdapter(listAdapter);
 
-        // do the setup
-        CatalogScreen.configure(this);
-    }
+    // do the setup
+    CatalogScreen.configure(this);
+  }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+  @Override
+  protected void onResume() {
+    super.onResume();
 
-        // do some work
-        presenter.fetchData();
-    }
+    // do some work
+    presenter.fetchData();
+  }
 
-    @Override
-    public void injectPresenter(CatalogContract.Presenter presenter) {
-        this.presenter = presenter;
-    }
+  @Override
+  public void injectPresenter(CatalogContract.Presenter presenter) {
+    this.presenter = presenter;
+  }
 
-    @Override
-    public void displayData(final CatalogViewModel viewModel) {
-        //Log.e(TAG, "displayData()");
+  @Override
+  public void displayData(final CatalogViewModel viewModel) {
+    //Log.e(TAG, "displayData()");
 
-        // deal with the data
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                listAdapter.setItems(viewModel.catalogItemList);
-            }
-        });
-    }
+    // deal with the data
+    runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        listAdapter.setItems(viewModel.catalogItemList);
+      }
+    });
+  }
 }

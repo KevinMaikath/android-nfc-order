@@ -35,28 +35,46 @@ public class Repository implements RepositoryContract {
     this.firestore = FirebaseFirestore.getInstance();
   }
 
+  /**
+   * Set the list of CatalogItem inside a given callback.
+   * If the list is empty, get the data from Firebase and then return it
+   * @param callback:
+   */
   @Override
   public void loadCatalogItems(final LoadCatalogItemsCallback callback) {
-    // TODO loadCatalogItems
     if (callback != null) {
-      firestore.collection("categories")
-          .get()
-          .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-              if (task.isSuccessful()) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                  Log.e("REPOSITORY", document.getId() + " => " + document.get("name"));
-                  CatalogItem item = document.toObject(CatalogItem.class);
-                  catalogItemList.add(item);
+
+      // Check if the list has already been loaded from Firebase
+      if (catalogItemList.size() < 1) {
+
+        // Get the data from Firebase and parse it into an ArrayList<CatalogItem>
+        firestore.collection("categories")
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+              @Override
+              public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                  for (QueryDocumentSnapshot document : task.getResult()) {
+                    CatalogItem item = document.toObject(CatalogItem.class);
+                    catalogItemList.add(item);
+                  }
+                  callback.setCatalogItems(catalogItemList);
+                } else {
+                  Log.e("REPOSITORY", "ERROR LOADING DATA");
                 }
-                callback.setCatalogItems(catalogItemList);
-              } else {
-//                Log.e("REPOSITORY", "ERROR LOADING DATA");
               }
-            }
-          });
-      callback.setCatalogItems(catalogItemList);
+            });
+
+        // Return the empty list anyway, so that we avoid errors
+        // The correct list will be set once we get it from Firebase (inside onCompleteListener)
+        callback.setCatalogItems(catalogItemList);
+
+      } else {
+        // If the list has already been set from Firebase, just return it
+        callback.setCatalogItems(catalogItemList);
+      }
+    } else {
+      Log.e("REPOSITORY", "ERROR AT CALLBACK");
     }
   }
 
