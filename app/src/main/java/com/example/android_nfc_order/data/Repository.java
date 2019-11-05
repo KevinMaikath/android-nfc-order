@@ -22,6 +22,9 @@ public class Repository implements RepositoryContract {
 
   private List<CatalogItem> catalogItemList;
 
+  private List<CategoryItem> categoryItemList;
+  private String lastLoadedCategory;
+
   public static Repository getInstance(Context context) {
     if (instance == null) {
       instance = new Repository(context);
@@ -32,12 +35,15 @@ public class Repository implements RepositoryContract {
   private Repository(Context context) {
     this.context = context;
     this.catalogItemList = new ArrayList<>();
+    this.categoryItemList = new ArrayList<>();
+    this.lastLoadedCategory = "";
     this.firestore = FirebaseFirestore.getInstance();
   }
 
   /**
    * Set the list of CatalogItem inside a given callback.
    * If the list is empty, get the data from Firebase and then return it
+   *
    * @param callback:
    */
   @Override
@@ -78,4 +84,46 @@ public class Repository implements RepositoryContract {
     }
   }
 
+
+  /**
+   * Set the list of CategoryItem inside a given callback.
+   * If the list is empty, get the data from Firebase and then return it
+   * If the requested category is the same as the last one we loaded from Firebase,
+   * just return the current list
+   * @param callback:
+   */
+  @Override
+  public void loadCategoryItemList(String collectionRef,
+                                   final LoadCategoryItemListCallback callback) {
+    if (callback != null) {
+
+      // Get the data from Firebase if the list is empty or if the last loaded collection
+      // is different from the current one
+      if (categoryItemList.size() < 1 || !lastLoadedCategory.equals(collectionRef)) {
+        firestore.collection(collectionRef)
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+              @Override
+              public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                  for (QueryDocumentSnapshot document : task.getResult()) {
+                    CategoryItem item = document.toObject(CategoryItem.class);
+                    categoryItemList.add(item);
+                  }
+                  callback.setCategoryItemList(categoryItemList);
+                } else {
+                  Log.e("REPOSITORY", "ERROR LOADING DATA");
+                }
+              }
+            });
+      } else {
+
+        // Return the empty list anyway, so that we avoid errors
+        // The correct list will be set once we get it from Firebase (inside onCompleteListener)
+        callback.setCategoryItemList(categoryItemList);
+      }
+    } else {
+      Log.e("REPOSITORY", "ERROR AT CALLBACK");
+    }
+  }
 }

@@ -2,6 +2,7 @@ package com.example.android_nfc_order.catalogScreen;
 
 import android.util.Log;
 
+import com.example.android_nfc_order.categoryScreen.CategoryState;
 import com.example.android_nfc_order.data.CatalogItem;
 import com.example.android_nfc_order.data.RepositoryContract;
 
@@ -10,37 +11,37 @@ import java.util.List;
 
 public class CatalogPresenter implements CatalogContract.Presenter {
 
-    public static String TAG = CatalogPresenter.class.getSimpleName();
+  public static String TAG = CatalogPresenter.class.getSimpleName();
 
-    private WeakReference<CatalogContract.View> view;
-    private CatalogViewModel viewModel;
-    private CatalogContract.Model model;
-    private CatalogContract.Router router;
+  private WeakReference<CatalogContract.View> view;
+  private CatalogViewModel viewModel;
+  private CatalogContract.Model model;
+  private CatalogContract.Router router;
 
-    public CatalogPresenter(CatalogState state) {
-        viewModel = state;
-    }
+  public CatalogPresenter(CatalogState state) {
+    viewModel = state;
+  }
 
-    @Override
-    public void injectView(WeakReference<CatalogContract.View> view) {
-        this.view = view;
-    }
+  @Override
+  public void injectView(WeakReference<CatalogContract.View> view) {
+    this.view = view;
+  }
 
-    @Override
-    public void injectModel(CatalogContract.Model model) {
-        this.model = model;
-    }
+  @Override
+  public void injectModel(CatalogContract.Model model) {
+    this.model = model;
+  }
 
-    @Override
-    public void injectRouter(CatalogContract.Router router) {
-        this.router = router;
-    }
+  @Override
+  public void injectRouter(CatalogContract.Router router) {
+    this.router = router;
+  }
 
-    @Override
-    public void fetchData() {
-        // Log.e(TAG, "fetchData()");
+  @Override
+  public void fetchData() {
+    // Log.e(TAG, "fetchData()");
 
-        // set passed state
+    // set passed state
 //        CatalogState state = router.getDataFromPreviousScreen();
 //        if (state != null) {
 //            viewModel.data = state.data;
@@ -54,25 +55,30 @@ public class CatalogPresenter implements CatalogContract.Presenter {
 //            viewModel.data = data;
 //        }
 
-        if (viewModel.catalogItemList == null) {
-            model.getCatalogItems(new RepositoryContract.LoadCatalogItemsCallback() {
-                @Override
-                public void setCatalogItems(List<CatalogItem> catalogItemList) {
-                    viewModel.catalogItemList = catalogItemList;
-                    view.get().displayData(viewModel);
+    if (viewModel.catalogItemList == null) {
+      model.getCatalogItems(new RepositoryContract.LoadCatalogItemsCallback() {
+        @Override
+        public void setCatalogItems(List<CatalogItem> catalogItemList) {
+          viewModel.catalogItemList = catalogItemList;
+          view.get().displayData(viewModel);
 //                    Log.e(TAG, "DATA SET FROM FIRESTORE");
-                }
-            });
         }
-
-        // update the view
-        view.get().displayData(viewModel);
-
+      });
+    } else {
+      view.get().displayData(viewModel);
     }
 
-    @Override
-    public void onCatalogItemClicked(CatalogItem item) {
-        // TODO onCatalogItemClicked
-    }
+    // update the view
+
+
+  }
+
+  @Override
+  public void onCatalogItemClicked(CatalogItem item) {
+    CategoryState state = new CategoryState();
+    state.currentCategory = item.getItemsRef();
+    router.passDataToCategoryScreen(state);
+    router.navigateToCategoryScreen();
+  }
 
 }

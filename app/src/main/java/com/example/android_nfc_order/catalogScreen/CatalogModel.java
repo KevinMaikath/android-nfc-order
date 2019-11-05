@@ -15,12 +15,6 @@ public class CatalogModel implements CatalogContract.Model {
     }
 
     @Override
-    public String fetchData() {
-        // Log.e(TAG, "fetchData()");
-        return "Hello";
-    }
-
-    @Override
     public void getCatalogItems(final RepositoryContract.LoadCatalogItemsCallback callback) {
         repository.loadCatalogItems(callback);
     }

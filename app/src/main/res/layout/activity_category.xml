@@ -4,12 +4,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        tools:context=".catalogScreen.CatalogActivity">
+        tools:context="com.example.android_nfc_order.categoryScreen.CategoryActivity">
 
     <include
-            android:id="@+id/catalog_recycler"
-            layout="@layout/catalog_recycler_layout"
+            android:id="@+id/category_recycler"
+            layout="@layout/category_recycler_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+

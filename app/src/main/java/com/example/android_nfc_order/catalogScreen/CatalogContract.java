@@ -1,5 +1,6 @@
 package com.example.android_nfc_order.catalogScreen;
 
+import com.example.android_nfc_order.categoryScreen.CategoryState;
 import com.example.android_nfc_order.data.CatalogItem;
 import com.example.android_nfc_order.data.RepositoryContract;
 
@@ -26,16 +27,14 @@ interface CatalogContract {
     }
 
     interface Model {
-        String fetchData();
-
         void getCatalogItems(RepositoryContract.LoadCatalogItemsCallback callback);
     }
 
     interface Router {
-        void navigateToNextScreen();
+        void navigateToCategoryScreen();
 
-        void passDataToNextScreen(CatalogState state);
+        void passDataToCategoryScreen(CategoryState state);
 
-        CatalogState getDataFromPreviousScreen();
+//        CatalogState getDataFromPreviousScreen();
     }
 }

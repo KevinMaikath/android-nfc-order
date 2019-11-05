@@ -8,5 +8,11 @@ public interface RepositoryContract {
         void setCatalogItems(final List<CatalogItem> catalogItemList);
     }
 
+    interface LoadCategoryItemListCallback {
+        void setCategoryItemList(final List<CategoryItem> categoryItemList);
+    }
+
     void loadCatalogItems(final LoadCatalogItemsCallback callback);
+
+    void loadCategoryItemList( String collectionRef, final LoadCategoryItemListCallback callback);
 }
