@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,8 +33,16 @@ public class CategoryActivity
       public void onClick(View view) {
         CategoryItem item = (CategoryItem) view.getTag();
         presenter.onCategoryItemClicked(item);
+//        Toast.makeText(getApplicationContext(), "Item Clicked", Toast.LENGTH_LONG).show();
       }
-    }, Glide.with(this));
+    },
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+//            Toast.makeText(getApplicationContext(), "Button Clicked", Toast.LENGTH_SHORT).show();
+          }
+        },
+        Glide.with(this));
 
     recyclerView = findViewById(R.id.category_recycler);
     recyclerView.setAdapter(listAdapter);

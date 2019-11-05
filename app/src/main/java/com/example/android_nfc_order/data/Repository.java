@@ -100,6 +100,10 @@ public class Repository implements RepositoryContract {
       // Get the data from Firebase if the list is empty or if the last loaded collection
       // is different from the current one
       if (categoryItemList.size() < 1 || !lastLoadedCategory.equals(collectionRef)) {
+
+        // reset current items before adding more
+        lastLoadedCategory = collectionRef;
+        categoryItemList.clear();
         firestore.collection(collectionRef)
             .get()
             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

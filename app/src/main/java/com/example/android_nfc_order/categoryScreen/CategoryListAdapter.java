@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.RequestManager;
@@ -22,12 +22,16 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
   private List<CategoryItem> categoryItemList;
   private final View.OnClickListener clickListener;
+  private final View.OnClickListener buttonListener;
 
   private RequestManager glide;
 
-  public CategoryListAdapter(View.OnClickListener clickListener, RequestManager glide){
+  public CategoryListAdapter(View.OnClickListener clickListener,
+                             View.OnClickListener buttonListener,
+                             RequestManager glide){
     this.categoryItemList = new ArrayList<>();
     this.clickListener = clickListener;
+    this.buttonListener = buttonListener;
     this.glide = glide;
   }
 
@@ -51,6 +55,8 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
     String name = categoryItemList.get(position).getName();
     holder.itemName.setText(name);
+
+    holder.button.setOnClickListener(buttonListener);
 
     String imgUrl = categoryItemList.get(position).getImgUrl();
     RequestOptions options = new RequestOptions().fitCenter();

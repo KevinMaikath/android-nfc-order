@@ -54,6 +54,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
 //      viewModel.data = data;
 //    }
 
+    Log.e(TAG, "category: " + viewModel.currentCategory);
     if (viewModel.itemList == null) {
       model.getCategoryItemList(viewModel.currentCategory,
           new RepositoryContract.LoadCategoryItemListCallback() {
@@ -68,7 +69,6 @@ public class CategoryPresenter implements CategoryContract.Presenter {
       view.get().displayData(viewModel);
     }
 
-    Log.e(TAG, "category: " + viewModel.currentCategory);
 
   }
 
