@@ -60,7 +60,7 @@ public class CatalogPresenter implements CatalogContract.Presenter {
                 public void setCatalogItems(List<CatalogItem> catalogItemList) {
                     viewModel.catalogItemList = catalogItemList;
                     view.get().displayData(viewModel);
-                    Log.e(TAG, "DATA SET FROM FIRESTORE");
+//                    Log.e(TAG, "DATA SET FROM FIRESTORE");
                 }
             });
         }
