@@ -2,8 +2,11 @@ package com.example.android_nfc_order.catalogScreen;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -21,6 +24,12 @@ public class CatalogActivity
   private RecyclerView recyclerView;
   private CatalogListAdapter listAdapter;
 
+  private Toolbar toolbar;
+  private ImageButton backButton;
+  private TextView toolbar_title;
+  private ImageButton cartButton;
+
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -36,6 +45,24 @@ public class CatalogActivity
 
     recyclerView = findViewById(R.id.catalog_recycler);
     recyclerView.setAdapter(listAdapter);
+
+    toolbar = findViewById(R.id.toolbar);
+
+    toolbar_title = findViewById(R.id.toolbar_title);
+    toolbar_title.setText(R.string.catalog_title);
+
+    backButton = findViewById(R.id.toolbar_backButton);
+    backButton.setVisibility(View.INVISIBLE);
+
+    cartButton = findViewById(R.id.toolbar_cartButton);
+    cartButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        // TODO cartButtonClick
+      }
+    });
+
+    setSupportActionBar(toolbar);
 
     // do the setup
     CatalogScreen.configure(this);

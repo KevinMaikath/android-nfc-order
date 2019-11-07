@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">android-nfc-order</string>
+    <string name="catalog_title">Catalog</string>
 </resources>

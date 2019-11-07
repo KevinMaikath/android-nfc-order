@@ -1,12 +1,12 @@
 package com.example.android_nfc_order.categoryScreen;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -22,6 +22,11 @@ public class CategoryActivity
 
   private RecyclerView recyclerView;
   private CategoryListAdapter listAdapter;
+
+  private Toolbar toolbar;
+  private ImageButton backButton;
+  private TextView toolbar_title;
+  private ImageButton cartButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,29 @@ public class CategoryActivity
     recyclerView = findViewById(R.id.category_recycler);
     recyclerView.setAdapter(listAdapter);
 
+    toolbar = findViewById(R.id.toolbar);
+
+    toolbar_title = findViewById(R.id.toolbar_title);
+
+    backButton = findViewById(R.id.toolbar_backButton);
+    backButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        onBackPressed();
+      }
+    });
+
+    cartButton = findViewById(R.id.toolbar_cartButton);
+    cartButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        // TODO cartButtonClick
+      }
+    });
+
+    setSupportActionBar(toolbar);
+
+
     // do the setup
     CategoryScreen.configure(this);
   }
@@ -66,7 +94,9 @@ public class CategoryActivity
 
   @Override
   public void displayData(final CategoryViewModel viewModel) {
-    Log.e(TAG, "displayData()");
+//    Log.e(TAG, "displayData()");
+
+    toolbar_title.setText(viewModel.categoryName);
 
     // deal with the data
     runOnUiThread(new Runnable() {

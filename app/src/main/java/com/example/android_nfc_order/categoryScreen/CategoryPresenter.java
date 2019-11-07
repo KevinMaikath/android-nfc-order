@@ -43,7 +43,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
     // set passed state
     CategoryState state = router.getDataFromCatalogScreen();
     if (state != null) {
-      viewModel.currentCategory = state.currentCategory;
+      viewModel.currentCategoryRef = state.currentCategoryRef;
     }
 
 //    if (viewModel.data == null) {
@@ -54,9 +54,9 @@ public class CategoryPresenter implements CategoryContract.Presenter {
 //      viewModel.data = data;
 //    }
 
-    Log.e(TAG, "category: " + viewModel.currentCategory);
+    Log.e(TAG, "category: " + viewModel.currentCategoryRef);
     if (viewModel.itemList == null) {
-      model.getCategoryItemList(viewModel.currentCategory,
+      model.getCategoryItemList(viewModel.currentCategoryRef,
           new RepositoryContract.LoadCategoryItemListCallback() {
             @Override
             public void setCategoryItemList(List<CategoryItem> categoryItemList) {

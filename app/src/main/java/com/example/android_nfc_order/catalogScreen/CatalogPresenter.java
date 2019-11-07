@@ -1,7 +1,5 @@
 package com.example.android_nfc_order.catalogScreen;
 
-import android.util.Log;
-
 import com.example.android_nfc_order.categoryScreen.CategoryState;
 import com.example.android_nfc_order.data.CatalogItem;
 import com.example.android_nfc_order.data.RepositoryContract;
@@ -76,7 +74,8 @@ public class CatalogPresenter implements CatalogContract.Presenter {
   @Override
   public void onCatalogItemClicked(CatalogItem item) {
     CategoryState state = new CategoryState();
-    state.currentCategory = item.getItemsRef();
+    state.currentCategoryRef = item.getItemsRef();
+    state.categoryName = item.getName();
     router.passDataToCategoryScreen(state);
     router.navigateToCategoryScreen();
   }

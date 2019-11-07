@@ -3,13 +3,24 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
         tools:context=".catalogScreen.CatalogActivity">
 
-    <include
-            android:id="@+id/catalog_recycler"
-            layout="@layout/catalog_recycler_layout"
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <include
+                android:id="@+id/toolbar"
+                layout="@layout/custom_toolbar" />
+
+        <include
+                android:id="@+id/catalog_recycler"
+                layout="@layout/catalog_recycler_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

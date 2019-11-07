@@ -6,6 +6,7 @@ import java.util.List;
 
 public class CategoryViewModel {
 
-  public String currentCategory;
+  public String categoryName;
+  public String currentCategoryRef;
   public List<CategoryItem> itemList;
 }
