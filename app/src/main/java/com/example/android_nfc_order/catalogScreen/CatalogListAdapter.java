@@ -1,7 +1,5 @@
 package com.example.android_nfc_order.catalogScreen;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +8,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.android_nfc_order.R;
-import com.example.android_nfc_order.data.CatalogItem;
+import com.example.android_nfc_order.data.Category;
 
 
 import java.util.ArrayList;
@@ -22,19 +19,19 @@ import java.util.List;
 
 public class CatalogListAdapter extends RecyclerView.Adapter<CatalogListAdapter.ViewHolder> {
 
-  private List<CatalogItem> catalogItems;
+  private List<Category> categories;
   private final View.OnClickListener clickListener;
 
   private RequestManager glide;
 
   public CatalogListAdapter(View.OnClickListener clickListener, RequestManager glide) {
-    this.catalogItems = new ArrayList<>();
+    this.categories = new ArrayList<>();
     this.clickListener = clickListener;
     this.glide = glide;
   }
 
-  public void setItems(List<CatalogItem> items) {
-    catalogItems = items;
+  public void setItems(List<Category> items) {
+    categories = items;
     notifyDataSetChanged();
   }
 
@@ -47,13 +44,13 @@ public class CatalogListAdapter extends RecyclerView.Adapter<CatalogListAdapter.
 
   @Override
   public void onBindViewHolder(ViewHolder holder, int position) {
-    holder.itemView.setTag(catalogItems.get(position));
+    holder.itemView.setTag(categories.get(position));
     holder.itemView.setOnClickListener(clickListener);
 
-    String name = catalogItems.get(position).getName();
+    String name = categories.get(position).getName();
     holder.itemName.setText(name);
 
-    String imgUrl = catalogItems.get(position).getImgUrl();
+    String imgUrl = categories.get(position).getImgUrl();
     RequestOptions options = new RequestOptions().fitCenter();
     glide.load(imgUrl).apply(options).into(holder.itemIcon);
   }
@@ -61,7 +58,7 @@ public class CatalogListAdapter extends RecyclerView.Adapter<CatalogListAdapter.
 
   @Override
   public int getItemCount() {
-    return catalogItems.size();
+    return categories.size();
   }
 
   class ViewHolder extends RecyclerView.ViewHolder {

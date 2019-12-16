@@ -1,9 +1,11 @@
 package com.example.android_nfc_order.categoryScreen;
 
-import com.example.android_nfc_order.data.CategoryItem;
+import com.example.android_nfc_order.data.Product;
 import com.example.android_nfc_order.data.RepositoryContract;
+import com.google.firebase.firestore.DocumentReference;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 interface CategoryContract {
 
@@ -22,11 +24,12 @@ interface CategoryContract {
 
     void fetchData();
 
-    void onCategoryItemClicked(CategoryItem item);
+    void onCategoryItemClicked(Product item);
   }
 
   interface Model {
-    void getCategoryItemList(String collectionRef,
+    void getCategoryItemList(String categoryName,
+                             List<DocumentReference> itemsRef,
                              RepositoryContract.LoadCategoryItemListCallback callback);
   }
 

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.android_nfc_order.R;
-import com.example.android_nfc_order.data.CatalogItem;
+import com.example.android_nfc_order.data.Category;
 
 
 public class CatalogActivity
@@ -38,7 +38,7 @@ public class CatalogActivity
     listAdapter = new CatalogListAdapter(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        CatalogItem item = (CatalogItem) view.getTag();
+        Category item = (Category) view.getTag();
         presenter.onCatalogItemClicked(item);
       }
     }, Glide.with(this));
@@ -89,7 +89,7 @@ public class CatalogActivity
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        listAdapter.setItems(viewModel.catalogItemList);
+        listAdapter.setItems(viewModel.categoryList);
       }
     });
   }

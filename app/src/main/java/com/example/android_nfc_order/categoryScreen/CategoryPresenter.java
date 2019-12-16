@@ -2,7 +2,7 @@ package com.example.android_nfc_order.categoryScreen;
 
 import android.util.Log;
 
-import com.example.android_nfc_order.data.CategoryItem;
+import com.example.android_nfc_order.data.Product;
 import com.example.android_nfc_order.data.RepositoryContract;
 
 import java.lang.ref.WeakReference;
@@ -43,7 +43,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
     // set passed state
     CategoryState state = router.getDataFromCatalogScreen();
     if (state != null) {
-      viewModel.currentCategoryRef = state.currentCategoryRef;
+      viewModel.currentCategory = state.currentCategory;
     }
 
 //    if (viewModel.data == null) {
@@ -54,14 +54,15 @@ public class CategoryPresenter implements CategoryContract.Presenter {
 //      viewModel.data = data;
 //    }
 
-    Log.e(TAG, "category: " + viewModel.currentCategoryRef);
-    if (viewModel.itemList == null) {
-      model.getCategoryItemList(viewModel.currentCategoryRef,
+    Log.e(TAG, "category: " + viewModel.currentCategory.getName());
+    if (viewModel.productList == null) {
+      model.getCategoryItemList(viewModel.currentCategory.getName(),
+          viewModel.currentCategory.getItems(),
           new RepositoryContract.LoadCategoryItemListCallback() {
             @Override
-            public void setCategoryItemList(List<CategoryItem> categoryItemList) {
+            public void setCategoryItemList(List<Product> productList) {
               Log.e(TAG, "Reatrieving data from firebase");
-              viewModel.itemList = categoryItemList;
+              viewModel.productList = productList;
               view.get().displayData(viewModel);
             }
           });
@@ -73,7 +74,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
   }
 
   @Override
-  public void onCategoryItemClicked(CategoryItem item) {
+  public void onCategoryItemClicked(Product item) {
     // TODO onCategoryItemClicked
   }
 }

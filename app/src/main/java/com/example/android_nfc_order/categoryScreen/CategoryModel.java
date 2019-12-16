@@ -4,8 +4,10 @@ import android.util.Log;
 
 import com.example.android_nfc_order.data.Repository;
 import com.example.android_nfc_order.data.RepositoryContract;
+import com.google.firebase.firestore.DocumentReference;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 public class CategoryModel implements CategoryContract.Model {
 
@@ -18,8 +20,9 @@ public class CategoryModel implements CategoryContract.Model {
   }
 
   @Override
-  public void getCategoryItemList(String collectionRef,
+  public void getCategoryItemList(String categoryName,
+                                  List<DocumentReference> itemsRef,
                                   RepositoryContract.LoadCategoryItemListCallback callback) {
-    repository.loadCategoryItemList(collectionRef, callback);
+    repository.loadCategoryItemList(categoryName, itemsRef, callback);
   }
 }

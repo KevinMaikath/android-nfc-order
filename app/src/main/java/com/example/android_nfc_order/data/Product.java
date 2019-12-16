@@ -2,18 +2,18 @@ package com.example.android_nfc_order.data;
 
 import java.util.List;
 
-public class CategoryItem {
+public class Product {
 
   private String name;
   private String imgUrl;
   private Float price;
   private List<String> ingredients;
 
-  public CategoryItem(){
+  public Product(){
 
   }
 
-  public CategoryItem(String name, String imgUrl, Float price, List<String> ingredients) {
+  public Product(String name, String imgUrl, Float price, List<String> ingredients) {
     this.name = name;
     this.imgUrl = imgUrl;
     this.price = price;

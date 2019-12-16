@@ -1,7 +1,7 @@
 package com.example.android_nfc_order.catalogScreen;
 
 import com.example.android_nfc_order.categoryScreen.CategoryState;
-import com.example.android_nfc_order.data.CatalogItem;
+import com.example.android_nfc_order.data.Category;
 import com.example.android_nfc_order.data.RepositoryContract;
 
 import java.lang.ref.WeakReference;
@@ -23,7 +23,7 @@ interface CatalogContract {
 
         void fetchData();
 
-        void onCatalogItemClicked(CatalogItem item);
+        void onCatalogItemClicked(Category item);
     }
 
     interface Model {

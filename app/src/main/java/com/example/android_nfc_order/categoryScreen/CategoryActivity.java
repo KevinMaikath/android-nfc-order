@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.android_nfc_order.R;
-import com.example.android_nfc_order.data.CategoryItem;
+import com.example.android_nfc_order.data.Product;
 
 public class CategoryActivity
     extends AppCompatActivity implements CategoryContract.View {
@@ -36,7 +36,7 @@ public class CategoryActivity
     listAdapter = new CategoryListAdapter(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        CategoryItem item = (CategoryItem) view.getTag();
+        Product item = (Product) view.getTag();
         presenter.onCategoryItemClicked(item);
 //        Toast.makeText(getApplicationContext(), "Item Clicked", Toast.LENGTH_LONG).show();
       }
@@ -96,13 +96,13 @@ public class CategoryActivity
   public void displayData(final CategoryViewModel viewModel) {
 //    Log.e(TAG, "displayData()");
 
-    toolbar_title.setText(viewModel.categoryName);
+    toolbar_title.setText(viewModel.currentCategory.getName());
 
     // deal with the data
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        listAdapter.setItems(viewModel.itemList);
+        listAdapter.setItems(viewModel.productList);
       }
     });
   }

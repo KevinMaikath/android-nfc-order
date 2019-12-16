@@ -6,21 +6,20 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.android_nfc_order.R;
-import com.example.android_nfc_order.data.CategoryItem;
+import com.example.android_nfc_order.data.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.ViewHolder> {
 
-  private List<CategoryItem> categoryItemList;
+  private List<Product> productList;
   private final View.OnClickListener clickListener;
   private final View.OnClickListener buttonListener;
 
@@ -29,14 +28,14 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
   public CategoryListAdapter(View.OnClickListener clickListener,
                              View.OnClickListener buttonListener,
                              RequestManager glide){
-    this.categoryItemList = new ArrayList<>();
+    this.productList = new ArrayList<>();
     this.clickListener = clickListener;
     this.buttonListener = buttonListener;
     this.glide = glide;
   }
 
-  public void setItems(List<CategoryItem> items) {
-    categoryItemList = items;
+  public void setItems(List<Product> items) {
+    productList = items;
     notifyDataSetChanged();
   }
 
@@ -50,22 +49,22 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
   @Override
   public void onBindViewHolder(ViewHolder holder, int position) {
-    holder.itemView.setTag(categoryItemList.get(position));
+    holder.itemView.setTag(productList.get(position));
     holder.itemView.setOnClickListener(clickListener);
 
-    String name = categoryItemList.get(position).getName();
+    String name = productList.get(position).getName();
     holder.itemName.setText(name);
 
     holder.button.setOnClickListener(buttonListener);
 
-    String imgUrl = categoryItemList.get(position).getImgUrl();
+    String imgUrl = productList.get(position).getImgUrl();
     RequestOptions options = new RequestOptions().fitCenter();
     glide.load(imgUrl).apply(options).into(holder.itemIcon);
   }
 
   @Override
   public int getItemCount() {
-    return categoryItemList.size();
+    return productList.size();
   }
 
   class ViewHolder extends RecyclerView.ViewHolder {

@@ -1,12 +1,12 @@
 package com.example.android_nfc_order.categoryScreen;
 
-import com.example.android_nfc_order.data.CategoryItem;
+import com.example.android_nfc_order.data.Category;
+import com.example.android_nfc_order.data.Product;
 
 import java.util.List;
 
 public class CategoryViewModel {
 
-  public String categoryName;
-  public String currentCategoryRef;
-  public List<CategoryItem> itemList;
+  public Category currentCategory;
+  public List<Product> productList;
 }
