@@ -41,11 +41,14 @@ public class DetailPresenter implements DetailContract.Presenter {
     if (state != null) {
       viewModel.currentProduct = state.currentProduct;
     }
-    
+
     // update the view
     view.get().displayData(viewModel);
 
   }
 
-
+  @Override
+  public void onAddButtonClicked() {
+    model.addProductToShoppingCart(viewModel.currentProduct);
+  }
 }

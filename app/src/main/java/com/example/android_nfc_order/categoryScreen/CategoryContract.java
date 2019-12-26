@@ -26,12 +26,16 @@ interface CategoryContract {
     void fetchData();
 
     void onCategoryItemClicked(Product item);
+
+    void onProductAddClicked(Product item);
   }
 
   interface Model {
     void getCategoryItemList(String categoryName,
                              List<DocumentReference> itemsRef,
                              RepositoryContract.LoadCategoryItemListCallback callback);
+
+    void addProductToShoppingCart(Product product);
   }
 
   interface Router {

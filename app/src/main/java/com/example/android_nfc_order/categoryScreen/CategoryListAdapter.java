@@ -21,16 +21,16 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
   private List<Product> productList;
   private final View.OnClickListener clickListener;
-  private final View.OnClickListener buttonListener;
+  private final ButtonClickedCallback buttonCallback;
 
   private RequestManager glide;
 
   public CategoryListAdapter(View.OnClickListener clickListener,
-                             View.OnClickListener buttonListener,
-                             RequestManager glide){
+                             ButtonClickedCallback callback,
+                             RequestManager glide) {
     this.productList = new ArrayList<>();
     this.clickListener = clickListener;
-    this.buttonListener = buttonListener;
+    this.buttonCallback = callback;
     this.glide = glide;
   }
 
@@ -48,14 +48,19 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
   }
 
   @Override
-  public void onBindViewHolder(ViewHolder holder, int position) {
+  public void onBindViewHolder(ViewHolder holder, final int position) {
     holder.itemView.setTag(productList.get(position));
     holder.itemView.setOnClickListener(clickListener);
 
     String name = productList.get(position).getName();
     holder.itemName.setText(name);
 
-    holder.button.setOnClickListener(buttonListener);
+    holder.button.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        buttonCallback.productClicked(productList.get(position));
+      }
+    });
 
     String imgUrl = productList.get(position).getImgUrl();
     RequestOptions options = new RequestOptions().fitCenter();

@@ -14,6 +14,10 @@ import com.bumptech.glide.Glide;
 import com.example.android_nfc_order.R;
 import com.example.android_nfc_order.data.Product;
 
+interface ButtonClickedCallback {
+  void productClicked(Product item);
+}
+
 public class CategoryActivity
     extends AppCompatActivity implements CategoryContract.View {
 
@@ -42,10 +46,10 @@ public class CategoryActivity
 //        Toast.makeText(getApplicationContext(), "Item Clicked", Toast.LENGTH_LONG).show();
       }
     },
-        new View.OnClickListener() {
+        new ButtonClickedCallback() {
           @Override
-          public void onClick(View v) {
-//            Toast.makeText(getApplicationContext(), "Button Clicked", Toast.LENGTH_SHORT).show();
+          public void productClicked(Product item) {
+            presenter.onProductAddClicked(item);
           }
         },
         Glide.with(this));

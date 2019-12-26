@@ -63,7 +63,6 @@ public class CategoryPresenter implements CategoryContract.Presenter {
       view.get().displayData(viewModel);
     }
 
-
   }
 
   @Override
@@ -72,5 +71,10 @@ public class CategoryPresenter implements CategoryContract.Presenter {
     state.currentProduct = item;
     router.passDataToDetailScreen(state);
     router.navigateToDetailScreen();
+  }
+
+  @Override
+  public void onProductAddClicked(Product item) {
+    model.addProductToShoppingCart(item);
   }
 }

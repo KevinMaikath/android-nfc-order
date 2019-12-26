@@ -22,7 +22,7 @@ public class DetailActivity
   private Toolbar toolbar;
   private ImageButton backButton;
   private TextView toolbar_title, product_price;
-  private ImageButton cartButton;
+  private ImageButton cartButton, addButton;
   private ImageView productImage;
   private ListView ingredientsList;
 
@@ -44,6 +44,7 @@ public class DetailActivity
     productImage = findViewById(R.id.product_image);
     product_price = findViewById(R.id.product_price_label);
     ingredientsList = findViewById(R.id.ingredients_list);
+    addButton = findViewById(R.id.item_add_button);
 
     toolbar = findViewById(R.id.toolbar);
     toolbar_title = findViewById(R.id.toolbar_title);
@@ -68,6 +69,13 @@ public class DetailActivity
 
     ingredientsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
     ingredientsList.setAdapter(ingredientsAdapter);
+
+    addButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        presenter.onAddButtonClicked();
+      }
+    });
 
     // do the setup
     DetailScreen.configure(this);

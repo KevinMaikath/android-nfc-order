@@ -1,17 +1,21 @@
 package com.example.android_nfc_order.detailScreen;
 
 
+import com.example.android_nfc_order.data.Product;
+import com.example.android_nfc_order.data.ShoppingCart;
+
 public class DetailModel implements DetailContract.Model {
 
   public static String TAG = DetailModel.class.getSimpleName();
 
-  public DetailModel() {
+  private ShoppingCart shoppingCart;
 
+  public DetailModel(ShoppingCart shoppingCart) {
+    this.shoppingCart = shoppingCart;
   }
 
   @Override
-  public String fetchData() {
-    // Log.e(TAG, "fetchData()");
-    return "Hello";
+  public void addProductToShoppingCart(Product product) {
+    shoppingCart.addOneToItemCount(product);
   }
 }

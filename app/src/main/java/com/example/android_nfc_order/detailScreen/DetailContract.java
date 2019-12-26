@@ -1,5 +1,7 @@
 package com.example.android_nfc_order.detailScreen;
 
+import com.example.android_nfc_order.data.Product;
+
 import java.lang.ref.WeakReference;
 
 interface DetailContract {
@@ -18,10 +20,12 @@ interface DetailContract {
     void injectRouter(Router router);
 
     void fetchData();
+
+    void onAddButtonClicked();
   }
 
   interface Model {
-    String fetchData();
+    void addProductToShoppingCart(Product product);
   }
 
   interface Router {
