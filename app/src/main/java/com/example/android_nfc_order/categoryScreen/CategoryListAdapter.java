@@ -55,6 +55,10 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     String name = productList.get(position).getName();
     holder.itemName.setText(name);
 
+    Float price = productList.get(position).getPrice();
+    String priceStr = "$" + price;
+    holder.itemPrice.setText(priceStr);
+
     holder.button.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -74,12 +78,14 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
   class ViewHolder extends RecyclerView.ViewHolder {
     final TextView itemName;
+    final TextView itemPrice;
     final ImageView itemIcon;
     final ImageButton button;
 
     ViewHolder(View view) {
       super(view);
       itemName = view.findViewById(R.id.item_name);
+      itemPrice = view.findViewById(R.id.item_price);
       itemIcon = view.findViewById(R.id.item_icon);
       button = view.findViewById(R.id.item_add_button);
     }
