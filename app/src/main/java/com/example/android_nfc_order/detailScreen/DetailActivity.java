@@ -61,7 +61,7 @@ public class DetailActivity
     cartButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        // TODO cartButtonClick
+        presenter.onCartButtonClicked();
       }
     });
 

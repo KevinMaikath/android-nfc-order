@@ -3,7 +3,7 @@ package com.example.android_nfc_order.detailScreen;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.android_nfc_order.app.AppMediator;
-import com.example.android_nfc_order.data.ShoppingCart;
+import com.example.android_nfc_order.data.ShoppingCartRepository;
 
 import java.lang.ref.WeakReference;
 
@@ -18,7 +18,7 @@ public class DetailScreen {
     AppMediator mediator = (AppMediator) context.get().getApplication();
     DetailState state = mediator.getDetailState();
 
-    ShoppingCart shoppingCart = ShoppingCart.getInstance(context.get());
+    ShoppingCartRepository shoppingCart = ShoppingCartRepository.getInstance(context.get());
 
     DetailContract.Router router = new DetailRouter(mediator);
     DetailContract.Presenter presenter = new DetailPresenter(state);

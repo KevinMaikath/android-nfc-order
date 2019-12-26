@@ -37,21 +37,6 @@ public class CatalogPresenter implements CatalogContract.Presenter {
 
   @Override
   public void fetchData() {
-    // Log.e(TAG, "fetchData()");
-
-    // set passed state
-//        CatalogState state = router.getDataFromPreviousScreen();
-//        if (state != null) {
-//            viewModel.data = state.data;
-//        }
-//
-//        if (viewModel.data == null) {
-//            // call the model
-//            String data = model.fetchData();
-//
-//            // set initial state
-//            viewModel.data = data;
-//        }
 
     if (viewModel.categoryList == null) {
       model.getCatalogItems(new RepositoryContract.LoadCatalogItemsCallback() {
@@ -59,14 +44,11 @@ public class CatalogPresenter implements CatalogContract.Presenter {
         public void setCatalogItems(List<Category> categoryList) {
           viewModel.categoryList = categoryList;
           view.get().displayData(viewModel);
-//                    Log.e(TAG, "DATA SET FROM FIRESTORE");
         }
       });
     } else {
       view.get().displayData(viewModel);
     }
-
-    // update the view
 
 
   }
@@ -79,4 +61,8 @@ public class CatalogPresenter implements CatalogContract.Presenter {
     router.navigateToCategoryScreen();
   }
 
+  @Override
+  public void onCartButtonClicked() {
+    router.navigateToShoppingCartScreen();
+  }
 }

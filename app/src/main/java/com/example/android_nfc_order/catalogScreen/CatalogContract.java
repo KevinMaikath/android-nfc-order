@@ -8,33 +8,35 @@ import java.lang.ref.WeakReference;
 
 interface CatalogContract {
 
-    interface View {
-        void injectPresenter(Presenter presenter);
+  interface View {
+    void injectPresenter(Presenter presenter);
 
-        void displayData(CatalogViewModel viewModel);
-    }
+    void displayData(CatalogViewModel viewModel);
+  }
 
-    interface Presenter {
-        void injectView(WeakReference<View> view);
+  interface Presenter {
+    void injectView(WeakReference<View> view);
 
-        void injectModel(Model model);
+    void injectModel(Model model);
 
-        void injectRouter(Router router);
+    void injectRouter(Router router);
 
-        void fetchData();
+    void fetchData();
 
-        void onCatalogItemClicked(Category item);
-    }
+    void onCatalogItemClicked(Category item);
 
-    interface Model {
-        void getCatalogItems(RepositoryContract.LoadCatalogItemsCallback callback);
-    }
+    void onCartButtonClicked();
+  }
 
-    interface Router {
-        void navigateToCategoryScreen();
+  interface Model {
+    void getCatalogItems(RepositoryContract.LoadCatalogItemsCallback callback);
+  }
 
-        void passDataToCategoryScreen(CategoryState state);
+  interface Router {
+    void navigateToCategoryScreen();
 
-//        CatalogState getDataFromPreviousScreen();
-    }
+    void passDataToCategoryScreen(CategoryState state);
+
+    void navigateToShoppingCartScreen();
+  }
 }

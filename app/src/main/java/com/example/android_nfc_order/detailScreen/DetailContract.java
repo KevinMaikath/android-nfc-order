@@ -22,6 +22,8 @@ interface DetailContract {
     void fetchData();
 
     void onAddButtonClicked();
+
+    void onCartButtonClicked();
   }
 
   interface Model {
@@ -29,10 +31,8 @@ interface DetailContract {
   }
 
   interface Router {
-    void navigateToNextScreen();
-
-    void passDataToNextScreen(DetailState state);
-
     DetailState getDataFromPreviousScreen();
+    
+    void navigateToShoppingCartScreen();
   }
 }

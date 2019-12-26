@@ -51,4 +51,9 @@ public class DetailPresenter implements DetailContract.Presenter {
   public void onAddButtonClicked() {
     model.addProductToShoppingCart(viewModel.currentProduct);
   }
+
+  @Override
+  public void onCartButtonClicked() {
+    router.navigateToShoppingCartScreen();
+  }
 }

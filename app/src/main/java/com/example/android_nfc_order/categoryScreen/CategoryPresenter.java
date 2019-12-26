@@ -77,4 +77,9 @@ public class CategoryPresenter implements CategoryContract.Presenter {
   public void onProductAddClicked(Product item) {
     model.addProductToShoppingCart(item);
   }
+
+  @Override
+  public void onCartButtonClicked() {
+    router.navigateToShoppingCartScreen();
+  }
 }

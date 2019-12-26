@@ -5,10 +5,10 @@ import android.util.Log;
 import com.example.android_nfc_order.data.Product;
 import com.example.android_nfc_order.data.Repository;
 import com.example.android_nfc_order.data.RepositoryContract;
-import com.example.android_nfc_order.data.ShoppingCart;
+import com.example.android_nfc_order.data.ShopItem;
+import com.example.android_nfc_order.data.ShoppingCartRepository;
 import com.google.firebase.firestore.DocumentReference;
 
-import java.lang.ref.WeakReference;
 import java.util.List;
 
 public class CategoryModel implements CategoryContract.Model {
@@ -16,9 +16,9 @@ public class CategoryModel implements CategoryContract.Model {
   public static String TAG = CategoryModel.class.getSimpleName();
 
   private Repository repository;
-  private ShoppingCart shoppingCart;
+  private ShoppingCartRepository shoppingCart;
 
-  public CategoryModel(Repository repository, ShoppingCart shoppingCart) {
+  public CategoryModel(Repository repository, ShoppingCartRepository shoppingCart) {
     this.repository = repository;
     this.shoppingCart = shoppingCart;
   }
@@ -32,7 +32,8 @@ public class CategoryModel implements CategoryContract.Model {
 
   @Override
   public void addProductToShoppingCart(Product product) {
-    shoppingCart.addOneToItemCount(product);
+    ShopItem item = new ShopItem(product.getName(), 1, product.getPrice());
+    shoppingCart.addOneToItemCount(item);
   }
 
 

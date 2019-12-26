@@ -2,4 +2,5 @@
     <string name="app_name">android-nfc-order</string>
     <string name="catalog_title">Catalog</string>
     <string name="detail_price_label">Price: $</string>
+    <string name="shopping_cart_title">Shopping Cart</string>
 </resources>

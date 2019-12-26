@@ -6,6 +6,7 @@ import android.content.Context;
 import com.example.android_nfc_order.app.AppMediator;
 import com.example.android_nfc_order.categoryScreen.CategoryActivity;
 import com.example.android_nfc_order.categoryScreen.CategoryState;
+import com.example.android_nfc_order.shoppingCartScreen.ShoppingCartActivity;
 
 public class CatalogRouter implements CatalogContract.Router {
 
@@ -30,9 +31,11 @@ public class CatalogRouter implements CatalogContract.Router {
         mediator.setCategoryState(state);
     }
 
-//    @Override
-//    public CatalogState getDataFromPreviousScreen() {
-//        CatalogState state = mediator.getCatalogState();
-//        return state;
-//    }
+    @Override
+    public void navigateToShoppingCartScreen() {
+        Context context = mediator.getApplicationContext();
+        Intent intent = new Intent(context, ShoppingCartActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 }

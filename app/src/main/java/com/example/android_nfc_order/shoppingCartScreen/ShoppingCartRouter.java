@@ -16,21 +16,4 @@ public class ShoppingCartRouter implements ShoppingCartContract.Router {
     this.mediator = mediator;
   }
 
-  @Override
-  public void navigateToNextScreen() {
-    Context context = mediator.getApplicationContext();
-    Intent intent = new Intent(context, ShoppingCartActivity.class);
-    context.startActivity(intent);
-  }
-
-  @Override
-  public void passDataToNextScreen(ShoppingCartState state) {
-    mediator.setShoppingCartState(state);
-  }
-
-  @Override
-  public ShoppingCartState getDataFromPreviousScreen() {
-    ShoppingCartState state = mediator.getShoppingCartState();
-    return state;
-  }
 }

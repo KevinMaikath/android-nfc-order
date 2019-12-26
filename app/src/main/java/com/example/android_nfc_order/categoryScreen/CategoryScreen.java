@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.example.android_nfc_order.app.AppMediator;
 import com.example.android_nfc_order.data.Repository;
-import com.example.android_nfc_order.data.ShoppingCart;
+import com.example.android_nfc_order.data.ShoppingCartRepository;
 
 public class CategoryScreen {
 
@@ -19,7 +19,7 @@ public class CategoryScreen {
     CategoryState state = mediator.getCategoryState();
 
     Repository repository = Repository.getInstance(context.get());
-    ShoppingCart shoppingCart = ShoppingCart.getInstance(context.get());
+    ShoppingCartRepository shoppingCart = ShoppingCartRepository.getInstance(context.get());
 
     CategoryContract.Router router = new CategoryRouter(mediator);
     CategoryContract.Presenter presenter = new CategoryPresenter(state);

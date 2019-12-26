@@ -4,10 +4,12 @@ public class ShopItem {
 
   private String name;
   private int quantity;
+  private float price;
 
-  public ShopItem(String name, int quantity) {
+  public ShopItem(String name, int quantity, float price) {
     this.name = name;
     this.quantity = quantity;
+    this.price = price;
   }
 
   public String getName() {
@@ -24,6 +26,14 @@ public class ShopItem {
 
   public void setQuantity(int quantity) {
     this.quantity = quantity;
+  }
+
+  public float getPrice() {
+    return price;
+  }
+
+  public void setPrice(float price) {
+    this.price = price;
   }
 
   public void addOne() {

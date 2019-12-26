@@ -28,6 +28,8 @@ interface CategoryContract {
     void onCategoryItemClicked(Product item);
 
     void onProductAddClicked(Product item);
+
+    void onCartButtonClicked();
   }
 
   interface Model {
@@ -44,5 +46,7 @@ interface CategoryContract {
     void passDataToDetailScreen(DetailState state);
 
     CategoryState getDataFromCatalogScreen();
+    
+    void navigateToShoppingCartScreen();
   }
 }
