@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.android_nfc_order.detailScreen.DetailActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <include
+                android:id="@+id/toolbar"
+                layout="@layout/custom_toolbar" />
+
+
+        <ImageView
+                android:id="@+id/product_image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight=".35"
+                android:scaleType="fitCenter" />
+
+        <LinearLayout
+                android:id="@+id/product_details"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".65"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/detail_price_label"
+                        android:textSize="24sp" />
+
+                <TextView
+                        android:id="@+id/product_price_label"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:textSize="24sp" />
+
+                <ImageButton
+                        android:id="@+id/item_add_button"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/add_circle"
+                        android:scaleType="centerCrop" />
+
+            </LinearLayout>
+
+
+            <ListView
+                    android:id="@+id/ingredients_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.android_nfc_order.data.Product;
 import com.example.android_nfc_order.data.RepositoryContract;
+import com.example.android_nfc_order.detailScreen.DetailState;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -46,14 +47,6 @@ public class CategoryPresenter implements CategoryContract.Presenter {
       viewModel.currentCategory = state.currentCategory;
     }
 
-//    if (viewModel.data == null) {
-//      // call the model
-//      String data = model.fetchData();
-//
-//      // set initial state
-//      viewModel.data = data;
-//    }
-
     Log.e(TAG, "category: " + viewModel.currentCategory.getName());
     if (viewModel.productList == null) {
       model.getCategoryItemList(viewModel.currentCategory.getName(),
@@ -61,7 +54,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
           new RepositoryContract.LoadCategoryItemListCallback() {
             @Override
             public void setCategoryItemList(List<Product> productList) {
-              Log.e(TAG, "Reatrieving data from firebase");
+              Log.e(TAG, "Retrieving data from firebase");
               viewModel.productList = productList;
               view.get().displayData(viewModel);
             }
@@ -75,6 +68,9 @@ public class CategoryPresenter implements CategoryContract.Presenter {
 
   @Override
   public void onCategoryItemClicked(Product item) {
-    // TODO onCategoryItemClicked
+    DetailState state = new DetailState();
+    state.currentProduct = item;
+    router.passDataToDetailScreen(state);
+    router.navigateToDetailScreen();
   }
 }

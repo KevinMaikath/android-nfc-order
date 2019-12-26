@@ -2,6 +2,7 @@ package com.example.android_nfc_order.categoryScreen;
 
 import com.example.android_nfc_order.data.Product;
 import com.example.android_nfc_order.data.RepositoryContract;
+import com.example.android_nfc_order.detailScreen.DetailState;
 import com.google.firebase.firestore.DocumentReference;
 
 import java.lang.ref.WeakReference;
@@ -34,9 +35,9 @@ interface CategoryContract {
   }
 
   interface Router {
-    void navigateToNextScreen();
+    void navigateToDetailScreen();
 
-    void passDataToNextScreen(CategoryState state);
+    void passDataToDetailScreen(DetailState state);
 
     CategoryState getDataFromCatalogScreen();
   }

@@ -1,10 +1,12 @@
 package com.example.android_nfc_order.categoryScreen;
 
-import android.util.Log;
 import android.content.Intent;
 import android.content.Context;
+import android.util.Log;
 
 import com.example.android_nfc_order.app.AppMediator;
+import com.example.android_nfc_order.detailScreen.DetailActivity;
+import com.example.android_nfc_order.detailScreen.DetailState;
 
 public class CategoryRouter implements CategoryContract.Router {
 
@@ -17,20 +19,22 @@ public class CategoryRouter implements CategoryContract.Router {
   }
 
   @Override
-  public void navigateToNextScreen() {
+  public void navigateToDetailScreen() {
     Context context = mediator.getApplicationContext();
-    Intent intent = new Intent(context, CategoryActivity.class);
+    Intent intent = new Intent(context, DetailActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     context.startActivity(intent);
   }
 
   @Override
-  public void passDataToNextScreen(CategoryState state) {
-    mediator.setCategoryState(state);
+  public CategoryState getDataFromCatalogScreen() {
+    return mediator.getCategoryState();
   }
 
   @Override
-  public CategoryState getDataFromCatalogScreen() {
-    CategoryState state = mediator.getCategoryState();
-    return state;
+  public void passDataToDetailScreen(DetailState state) {
+    mediator.setDetailState(state);
   }
+
+
 }
