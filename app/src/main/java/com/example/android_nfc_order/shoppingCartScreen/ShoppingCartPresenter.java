@@ -83,13 +83,19 @@ public class ShoppingCartPresenter implements ShoppingCartContract.Presenter {
 
   @Override
   public void onDoneClicked() {
+    view.get().setUpNFC();
+  }
+
+  @Override
+  public void onNFCRead(final String[] results) {
     model.submitOrder(
         new ShoppingCartRepositoryContract.SubmitOrderCallback() {
           @Override
           public void orderSubmitted(boolean successful) {
             // TODO submit order callback function
+            view.get().successfulSubmitAlert(successful, results[0]);
           }
         },
-        "docRef");
+        results[1]);
   }
 }

@@ -74,6 +74,9 @@ public class ShoppingCartRepository implements ShoppingCartRepositoryContract {
   @Override
   public void submitOrder(SubmitOrderCallback callback, String documentReference) {
     // TODO submitOrder
+    if (callback != null) {
+      callback.orderSubmitted(true);
+    }
   }
 
   @Override

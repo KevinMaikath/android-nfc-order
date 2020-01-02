@@ -11,6 +11,10 @@ interface ShoppingCartContract {
     void injectPresenter(Presenter presenter);
 
     void displayData(ShoppingCartViewModel viewModel);
+
+    void setUpNFC();
+
+    void successfulSubmitAlert(boolean success, String restaurant_name);
   }
 
   interface Presenter {
@@ -27,6 +31,8 @@ interface ShoppingCartContract {
     void removeItemClicked(ShopItem item);
 
     void onDoneClicked();
+
+    void onNFCRead(String[] results);
   }
 
   interface Model {
