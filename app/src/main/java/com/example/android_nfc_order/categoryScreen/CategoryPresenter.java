@@ -76,6 +76,8 @@ public class CategoryPresenter implements CategoryContract.Presenter {
   @Override
   public void onProductAddClicked(Product item) {
     model.addProductToShoppingCart(item);
+    String text = item.getName() + " added to the cart!";
+    view.get().presentToast(text);
   }
 
   @Override

@@ -10,6 +10,8 @@ interface DetailContract {
     void injectPresenter(Presenter presenter);
 
     void displayData(DetailViewModel viewModel);
+
+    void presentToast(String text);
   }
 
   interface Presenter {

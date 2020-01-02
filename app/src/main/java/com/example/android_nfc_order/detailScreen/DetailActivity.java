@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -113,5 +114,10 @@ public class DetailActivity
         ingredientsAdapter.addAll(viewModel.currentProduct.getIngredients());
       }
     });
+  }
+
+  @Override
+  public void presentToast(String text) {
+    Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
   }
 }

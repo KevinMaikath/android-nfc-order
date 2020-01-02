@@ -50,6 +50,8 @@ public class DetailPresenter implements DetailContract.Presenter {
   @Override
   public void onAddButtonClicked() {
     model.addProductToShoppingCart(viewModel.currentProduct);
+    String text = viewModel.currentProduct.getName() + " added to the cart!";
+    view.get().presentToast(text);
   }
 
   @Override

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -43,7 +44,6 @@ public class CategoryActivity
       public void onClick(View view) {
         Product item = (Product) view.getTag();
         presenter.onCategoryItemClicked(item);
-//        Toast.makeText(getApplicationContext(), "Item Clicked", Toast.LENGTH_LONG).show();
       }
     },
         new ButtonClickedCallback() {
@@ -115,5 +115,10 @@ public class CategoryActivity
   @Override
   public void onBackPressed() {
     this.finish();
+  }
+
+  @Override
+  public void presentToast(String text) {
+    Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
   }
 }

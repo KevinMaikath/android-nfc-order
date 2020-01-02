@@ -46,6 +46,7 @@
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/done_icon"
-            app:maxImageSize="40dp"/>
+            app:backgroundTint="@android:color/black"
+            app:maxImageSize="40dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

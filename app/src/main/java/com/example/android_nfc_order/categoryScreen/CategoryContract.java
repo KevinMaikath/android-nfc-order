@@ -14,6 +14,8 @@ interface CategoryContract {
     void injectPresenter(Presenter presenter);
 
     void displayData(CategoryViewModel viewModel);
+
+    void presentToast(String text);
   }
 
   interface Presenter {
