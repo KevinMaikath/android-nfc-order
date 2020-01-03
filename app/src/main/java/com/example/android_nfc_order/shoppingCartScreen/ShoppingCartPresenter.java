@@ -92,7 +92,6 @@ public class ShoppingCartPresenter implements ShoppingCartContract.Presenter {
         new ShoppingCartRepositoryContract.SubmitOrderCallback() {
           @Override
           public void orderSubmitted(boolean successful) {
-            // TODO submit order callback function
             view.get().successfulSubmitAlert(successful, results[0]);
           }
         },

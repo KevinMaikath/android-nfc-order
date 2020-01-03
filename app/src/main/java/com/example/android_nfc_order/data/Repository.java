@@ -126,23 +126,6 @@ public class Repository implements RepositoryContract {
                 }
               });
         }
-
-//        firestore.collection(collectionRef)
-//            .get()
-//            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//              @Override
-//              public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if (task.isSuccessful()) {
-//                  for (QueryDocumentSnapshot document : task.getResult()) {
-//                    Product item = document.toObject(Product.class);
-//                    productList.add(item);
-//                  }
-//                  callback.setCategoryItemList(productList);
-//                } else {
-//                  Log.e("REPOSITORY", "ERROR LOADING DATA");
-//                }
-//              }
-//            });
       } else {
 
         // Return the empty list anyway, so that we avoid errors

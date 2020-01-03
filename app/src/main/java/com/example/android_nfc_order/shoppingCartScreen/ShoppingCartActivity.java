@@ -108,7 +108,6 @@ public class ShoppingCartActivity
     // do the setup
     ShoppingCartScreen.configure(this);
 
-//    handleIntent(getIntent());
   }
 
   @Override
@@ -177,7 +176,6 @@ public class ShoppingCartActivity
     }
 
     if (!nfcAdapter.isEnabled()) {
-//      Toast.makeText(this, "NFC is disabled.", Toast.LENGTH_LONG).show();
       this.nfcAlert = new AlertDialog.Builder(this).create();
       this.nfcAlert.setTitle("NFC disabled.");
       this.nfcAlert.setMessage("Please enable NFC first.");
@@ -192,7 +190,6 @@ public class ShoppingCartActivity
     } else {
       setupForegroundDispatch(this, nfcAdapter);
 
-//      Toast.makeText(this, "NFC enabled!!", Toast.LENGTH_LONG).show();
       this.nfcAlert = new AlertDialog.Builder(this).create();
       this.nfcAlert.setTitle("NFC ready.");
       this.nfcAlert.setMessage("Please approach your phone to the NFC tag.");
@@ -266,7 +263,6 @@ public class ShoppingCartActivity
     @Override
     protected String doInBackground(Tag... params) {
       Tag tag = params[0];
-      Log.e(TAG, "___________________READ TAG_____________");
 
       Ndef ndef = Ndef.get(tag);
       if (ndef == null) {
@@ -329,7 +325,6 @@ public class ShoppingCartActivity
         String doc_ref = result.substring(separator + 1);
         String[] results = {restaurant_name, doc_ref};
 
-        Toast.makeText(ShoppingCartActivity.this, results[1], Toast.LENGTH_LONG).show();
         nfcAlert.dismiss();
         presenter.onNFCRead(results);
         stopForegroundDispatch(ShoppingCartActivity.this, nfcAdapter);
