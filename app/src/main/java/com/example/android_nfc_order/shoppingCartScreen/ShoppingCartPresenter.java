@@ -83,6 +83,10 @@ public class ShoppingCartPresenter implements ShoppingCartContract.Presenter {
 
   @Override
   public void onDoneClicked() {
+    if (viewModel.shopItemList.isEmpty()) {
+      String text = "Your order is currently empty.";
+      view.get().presentToast(text);
+    }
     view.get().setUpNFC();
   }
 

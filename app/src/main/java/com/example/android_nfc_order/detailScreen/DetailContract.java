@@ -11,6 +11,11 @@ interface DetailContract {
 
     void displayData(DetailViewModel viewModel);
 
+    /**
+     * Present a toast with an specified message.
+     *
+     * @param text: message to show.
+     */
     void presentToast(String text);
   }
 
@@ -23,18 +28,29 @@ interface DetailContract {
 
     void fetchData();
 
+    /**
+     * Tell the model to add the current product to the cartList.
+     */
     void onAddButtonClicked();
 
+    /**
+     * Go to ShoppingCartScreen.
+     */
     void onCartButtonClicked();
   }
 
   interface Model {
+    /**
+     * Tell the repository to add a product to the cartList.
+     *
+     * @param product: clicked product.
+     */
     void addProductToShoppingCart(Product product);
   }
 
   interface Router {
     DetailState getDataFromPreviousScreen();
-    
+
     void navigateToShoppingCartScreen();
   }
 }

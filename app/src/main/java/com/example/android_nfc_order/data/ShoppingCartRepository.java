@@ -1,7 +1,6 @@
 package com.example.android_nfc_order.data;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -9,9 +8,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -120,6 +117,10 @@ public class ShoppingCartRepository implements ShoppingCartRepositoryContract {
     callback.setTotalPrice(totalPrice);
   }
 
+
+  /**
+   * Data class for Firestore.
+   */
   private class OrderElement {
 
     String name;

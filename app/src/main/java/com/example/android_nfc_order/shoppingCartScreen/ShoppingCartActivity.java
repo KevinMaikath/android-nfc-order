@@ -166,6 +166,11 @@ public class ShoppingCartActivity
   }
 
   @Override
+  public void presentToast(String text) {
+    Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+  }
+
+  @Override
   public void setUpNFC() {
     nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 

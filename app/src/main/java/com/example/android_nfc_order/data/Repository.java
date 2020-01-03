@@ -42,12 +42,7 @@ public class Repository implements RepositoryContract {
     this.firestore = FirebaseFirestore.getInstance();
   }
 
-  /**
-   * Set the list of Category inside a given callback.
-   * If the list is empty, get the data from Firebase and then return it
-   *
-   * @param callback:
-   */
+
   @Override
   public void loadCatalogItems(final LoadCatalogItemsCallback callback) {
     if (callback != null) {
@@ -87,14 +82,6 @@ public class Repository implements RepositoryContract {
   }
 
 
-  /**
-   * Set the list of Product inside a given callback.
-   * If the list is empty, get the data from Firebase and then return it
-   * If the requested category is the same as the last one we loaded from Firebase,
-   * just return the current list
-   *
-   * @param callback:
-   */
   @Override
   public void loadCategoryItemList(String categoryToLoad,
                                    List<DocumentReference> itemsRef,

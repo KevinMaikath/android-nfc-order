@@ -23,12 +23,25 @@ interface CatalogContract {
 
     void fetchData();
 
+    /**
+     * Pass the clicked category and go to CategoryScreen.
+     *
+     * @param item: category clicked.
+     */
     void onCatalogItemClicked(Category item);
 
+    /**
+     * Go to ShoppingCartScreen.
+     */
     void onCartButtonClicked();
   }
 
   interface Model {
+    /**
+     * Tell the repository to load all the categories.
+     *
+     * @param callback: returns the category list when the task is finished.
+     */
     void getCatalogItems(RepositoryContract.LoadCatalogItemsCallback callback);
   }
 
