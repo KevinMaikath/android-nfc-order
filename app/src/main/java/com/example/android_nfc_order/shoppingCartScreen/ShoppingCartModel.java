@@ -37,8 +37,4 @@ public class ShoppingCartModel implements ShoppingCartContract.Model {
     shoppingCart.submitOrder(callback, docRef);
   }
 
-  @Override
-  public void loadTotalPrice(ShoppingCartRepositoryContract.LoadTotalPriceCallback callback) {
-    shoppingCart.loadTotalPrice(callback);
-  }
 }

@@ -5,24 +5,12 @@ import java.util.List;
 public interface ShoppingCartRepositoryContract {
 
   interface LoadShopItemListCallback {
-    void setShopItems(final List<ShopItem> shopItemList);
-  }
-
-  interface LoadTotalPriceCallback {
-    void setTotalPrice(final Float totalPrice);
+    void setShopItems(final List<ShopItem> shopItemList, final float totalPrice);
   }
 
   interface SubmitOrderCallback {
     void orderSubmitted(boolean successful);
   }
-
-
-  /**
-   * Return the total price of the current order.
-   *
-   * @param callback: returns the total price when the task is completed.
-   */
-  void loadTotalPrice(LoadTotalPriceCallback callback);
 
   /**
    * Return a list with the shopItems denoting the current order.

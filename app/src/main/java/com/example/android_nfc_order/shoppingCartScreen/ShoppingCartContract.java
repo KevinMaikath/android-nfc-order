@@ -100,12 +100,6 @@ interface ShoppingCartContract {
      */
     void submitOrder(ShoppingCartRepositoryContract.SubmitOrderCallback callback, String docRef);
 
-    /**
-     * Tell the repository to load the total price of the current order.
-     *
-     * @param callback: returns the total price when the task is completed.
-     */
-    void loadTotalPrice(ShoppingCartRepositoryContract.LoadTotalPriceCallback callback);
   }
 
   interface Router {

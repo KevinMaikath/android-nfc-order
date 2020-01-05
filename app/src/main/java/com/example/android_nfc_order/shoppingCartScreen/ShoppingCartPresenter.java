@@ -44,25 +44,15 @@ public class ShoppingCartPresenter implements ShoppingCartContract.Presenter {
     if (viewModel.shopItemList == null) {
       viewModel.shopItemList = new ArrayList<>();
       viewModel.totalPrice = 0;
-      refreshData();
     }
-
-    // update the view
-    view.get().displayData(viewModel);
+    refreshData();
   }
 
   private void refreshData() {
     model.loadShopItemList(new ShoppingCartRepositoryContract.LoadShopItemListCallback() {
       @Override
-      public void setShopItems(List<ShopItem> shopItemList) {
+      public void setShopItems(List<ShopItem> shopItemList, float totalPrice) {
         viewModel.shopItemList = shopItemList;
-        view.get().displayData(viewModel);
-      }
-    });
-
-    model.loadTotalPrice(new ShoppingCartRepositoryContract.LoadTotalPriceCallback() {
-      @Override
-      public void setTotalPrice(Float totalPrice) {
         viewModel.totalPrice = totalPrice;
         view.get().displayData(viewModel);
       }

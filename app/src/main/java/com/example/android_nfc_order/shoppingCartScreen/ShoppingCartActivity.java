@@ -125,13 +125,14 @@ public class ShoppingCartActivity
 
   @Override
   public void displayData(final ShoppingCartViewModel viewModel) {
-    String totalPrice = "Total: $" + viewModel.totalPrice;
-    total_price_label.setText(totalPrice);
+    Log.e(TAG, "__________________ DISPLAY DATA ________________");
+    final String totalPrice = "Total: $" + viewModel.totalPrice;
 
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
         listAdapter.setItems(viewModel.shopItemList);
+        total_price_label.setText(totalPrice);
       }
     });
   }
@@ -294,7 +295,6 @@ public class ShoppingCartActivity
       ndefRecord = records[4];
       if (ndefRecord.getTnf() == NdefRecord.TNF_WELL_KNOWN && Arrays.equals(ndefRecord.getType(), NdefRecord.RTD_TEXT)) {
         try {
-//          results[1] = readText(ndefRecord);
           result_4 = readText(ndefRecord);
         } catch (UnsupportedEncodingException e) {
           Log.e(TAG, "Unsupported Encoding", e);

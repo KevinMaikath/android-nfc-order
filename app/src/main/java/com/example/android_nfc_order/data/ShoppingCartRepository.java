@@ -39,7 +39,7 @@ public class ShoppingCartRepository implements ShoppingCartRepositoryContract {
 
   @Override
   public void loadShopItems(LoadShopItemListCallback callback) {
-    callback.setShopItems(this.cartList);
+    callback.setShopItems(this.cartList, this.totalPrice);
   }
 
   @Override
@@ -110,11 +110,6 @@ public class ShoppingCartRepository implements ShoppingCartRepositoryContract {
             }
           });
     }
-  }
-
-  @Override
-  public void loadTotalPrice(LoadTotalPriceCallback callback) {
-    callback.setTotalPrice(totalPrice);
   }
 
 
